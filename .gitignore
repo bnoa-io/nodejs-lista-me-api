@@ -1,0 +1,10 @@
+# Ignore operating system generated files
+.DS_Store
+Thumbs.db
+
+# Ignore Node.js modules
+node_modules/
+
+# Ignore temporary files
+temp/
+*.tmp
