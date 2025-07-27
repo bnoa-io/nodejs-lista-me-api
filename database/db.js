@@ -8,12 +8,17 @@ export async function getDBConnection() {
     driver: sqlite3.Database
   });
 
+  // await db.exec(` DROP TABLE IF EXISTS usuarios`);
+  
   // Cria tabela se não existir
   await db.exec(`
     CREATE TABLE IF NOT EXISTS usuarios (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT NOT NULL,
-      email TEXT NOT NULL UNIQUE
+      cargo TEXT NOT NULL,
+      contratacao DATE NOT NULL,
+      status BOOLEAN NOT NULL,
+      salario REAL NOT NULL
     )
   `);
 

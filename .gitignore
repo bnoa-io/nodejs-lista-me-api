@@ -8,3 +8,6 @@ node_modules/
 # Ignore temporary files
 temp/
 *.tmp
+
+# Ignore banco
+database/banco.sqlite
