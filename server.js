@@ -30,9 +30,23 @@ app.get('/usuarios', async (req, res) => {
   try {
     const db = await getDBConnection();
     const usuarios = await db.all('SELECT * FROM usuarios');
-    res.json(usuarios);
+    res.json(usuarios.map(usuario => {
+      usuario.status = usuario.status === 'true';
+      return usuario;
+    }));
   } catch (error) {
     res.status(500).json({ erro: 'Erro ao listar usuários', detalhe: error.message });
+  }
+});
+
+// READ - Listar as profissões cadastradas
+app.get('/usuarios/cargos', async (req, res) => {
+  try {
+    const db = await getDBConnection();
+    const cargos = await db.all('SELECT DISTINCT cargo FROM usuarios');
+    res.json(cargos.map(c => c.cargo));
+  } catch (error) {
+    res.status(500).json({ erro: 'Erro ao listar cargos', detalhe: error.message });
   }
 });
 
